@@ -1,7 +1,6 @@
 package main
 
 import (
-	"os"
 	"path/filepath"
 	"reflect"
 	"testing"
@@ -66,15 +65,10 @@ func checkError(t *testing.T, err error, want bool) {
 func TestMeta(t *testing.T) {
 	for _, tc := range metaTests {
 		t.Log("test case: " + tc.name)
-		f, err := os.Open(filepath.Join("testdata", tc.file))
-		if err != nil {
-			t.Error(err)
-		}
-		m, err := NewMeta(f)
+		doc, err := NewDocument(filepath.Join("testdata", tc.file))
 		checkError(t, err, tc.isErr)
-		if !reflect.DeepEqual(m, tc.meta) {
-			t.Errorf("got: %v, want:%v", m, tc.meta)
+		if !reflect.DeepEqual(doc.Meta, tc.meta) {
+			t.Errorf("got: %v, want:%v", doc.Meta, tc.meta)
 		}
-		f.Close()
 	}
 }
