@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-var tests = []struct {
+var metaTests = []struct {
 	name  string
 	file  string
 	meta  Meta
@@ -50,10 +50,10 @@ var tests = []struct {
 
 func init() {
 	d, _ := time.Parse(time.RFC3339, "2016-05-27T23:45:46.000Z")
-	tests[0].meta.Date = d
-	tests[2].meta.Date = d
+	metaTests[0].meta.Date = d
+	metaTests[2].meta.Date = d
 	d, _ = time.Parse(time.RFC3339, "2016-05-28T17:32:43.000Z")
-	tests[1].meta.Date = d
+	metaTests[1].meta.Date = d
 }
 
 func checkError(t *testing.T, err error, want bool) {
@@ -63,8 +63,8 @@ func checkError(t *testing.T, err error, want bool) {
 	}
 }
 
-func TestCases(t *testing.T) {
-	for _, tc := range tests {
+func TestMeta(t *testing.T) {
+	for _, tc := range metaTests {
 		t.Log("test case: " + tc.name)
 		f, err := os.Open(filepath.Join("testdata", tc.file))
 		if err != nil {
