@@ -81,11 +81,11 @@ func (e DocumentError) Error() string {
 func NewDocument(filename string) (doc *Document, err error) {
 	f, err := os.Open(filename)
 	if err != nil {
-		return &Document{}, err
+		return &Document{}, DocumentError{err}
 	}
 	defer func() {
 		if cerr := f.Close(); cerr != nil && err == nil {
-			err = cerr
+			err = DocumentError{cerr}
 		}
 	}()
 
@@ -95,7 +95,7 @@ func NewDocument(filename string) (doc *Document, err error) {
 	// read front-matter metadata
 	meta, err := readMeta(s)
 	if err != nil {
-		return &Document{}, err
+		return &Document{}, DocumentError{err}
 	}
 	doc = &Document{}
 	doc.Meta = meta
