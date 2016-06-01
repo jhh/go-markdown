@@ -1,4 +1,4 @@
-package markdown
+package markdown // import "jhhgo.us/markdown"
 
 import (
 	"path/filepath"
