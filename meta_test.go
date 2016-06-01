@@ -20,6 +20,7 @@ var metaTests = []struct {
 			Title:      "Complete",
 			Categories: []string{"test"},
 			Tags:       []string{"foo", "bar"},
+			Path:       "testdata/ok_complete.md",
 		},
 		false,
 	},
@@ -29,6 +30,7 @@ var metaTests = []struct {
 		Meta{
 			Title:      "No Tags",
 			Categories: []string{"test"},
+			Path:       "testdata/ok_no_tags.md",
 		},
 		false,
 	},
@@ -39,6 +41,7 @@ var metaTests = []struct {
 			Title:      "Has Extra Metadata",
 			Categories: []string{"test"},
 			Tags:       []string{"foo", "bar"},
+			Path:       "testdata/ok_extra.md",
 		},
 		false,
 	},
