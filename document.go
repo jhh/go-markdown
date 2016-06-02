@@ -1,5 +1,19 @@
-// Package markdown translates plain text with markdown formatting and YAML
+// Package markdown translates plain text with Markdown formatting and YAML
 // front-matter into HTML documents with metadata.
+// Markdown processing is done by "github.com/russross/blackfriday".
+// Document format is:
+//
+// 	---
+// 	title: Complete
+// 	date: 2016-05-27T23:45:46.000Z # RFC3339 format
+// 	categories:
+//   	  - test
+// 	tags:
+//   	  - foo
+//   	  - bar
+// 	---
+// 	# Heading
+// 	The remainder of the document in *Markdown* format.
 package markdown // import "jhhgo.us/markdown"
 
 import (
@@ -18,17 +32,6 @@ const delim = "---"
 
 // Meta is the metadata for a post, taken from the document's YAML front-matter.
 // Path is set to the relative path of the parsed document.
-// Front-matter format is:
-//
-// 	---
-// 	title: Complete
-// 	date: 2016-05-27T23:45:46.000Z # RFC3339 format
-// 	categories:
-//   	  - test
-// 	tags:
-//   	  - foo
-//   	  - bar
-// 	---
 type Meta struct {
 	Title      string
 	Date       time.Time
