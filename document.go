@@ -21,6 +21,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/russross/blackfriday"
@@ -31,7 +32,8 @@ import (
 const delim = "---"
 
 // Meta is the metadata for a post, taken from the document's YAML front-matter.
-// Path is set to the relative path of the parsed document.
+// Path is set to the relative path of the parsed document and has '/' path
+// separators.
 type Meta struct {
 	Title      string
 	Date       time.Time
@@ -115,7 +117,7 @@ func NewDocument(filename string) (doc *Document, err error) {
 	if err != nil {
 		return &Document{}, DocumentError{err}
 	}
-	meta.Path = filename
+	meta.Path = filepath.ToSlash(filename)
 	doc = &Document{}
 	doc.Meta = meta
 
