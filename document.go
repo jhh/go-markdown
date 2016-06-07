@@ -39,7 +39,7 @@ type Meta struct {
 	Date       time.Time
 	Categories []string
 	Tags       []string
-	Path       string
+	File       string
 }
 
 // MetaError is an error occurred during metadata parsing.
@@ -117,7 +117,7 @@ func NewDocument(filename string) (doc *Document, err error) {
 	if err != nil {
 		return &Document{}, DocumentError{err}
 	}
-	meta.Path = filepath.ToSlash(filename)
+	meta.File = filepath.Base(filename)
 	doc = &Document{}
 	doc.Meta = meta
 
