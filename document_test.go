@@ -21,7 +21,7 @@ var docTests = []struct {
 				Title:      "Complete",
 				Categories: []string{"test"},
 				Tags:       []string{"foo", "bar"},
-				File:       "ok_complete.md",
+				RelPath:    "ok_complete.md",
 			},
 			Body: []byte("<h1>Complete</h1>\n"),
 		},

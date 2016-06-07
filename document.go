@@ -32,16 +32,16 @@ import (
 const delim = "---"
 
 // Meta is the metadata for a post, taken from the document's YAML front-matter.
-// Path is set to the path (relative to basepath in NewDocument) of the
+// RelPath is set to the path (relative to basepath in NewDocument) of the
 // parsed document and has '/' path separators. For example, if
-// NewDocument("/a", "/a/b/document.md") is called, Meta.Path will be
+// NewDocument("/a", "/a/b/document.md") is called, Meta.RelPath will be
 // "b/document.md"
 type Meta struct {
 	Title      string
 	Date       time.Time
 	Categories []string
 	Tags       []string
-	File       string
+	RelPath    string
 }
 
 // MetaError is an error occurred during metadata parsing.
@@ -124,7 +124,7 @@ func NewDocument(basepath, filename string) (doc *Document, err error) {
 	if err != nil {
 		return &Document{}, DocumentError{err}
 	}
-	meta.File = rel
+	meta.RelPath = rel
 	doc = &Document{}
 	doc.Meta = meta
 
