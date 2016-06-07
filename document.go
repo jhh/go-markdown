@@ -99,8 +99,8 @@ func (e DocumentError) Error() string {
 	return fmt.Sprintf("document: parsing error: %v", e.error)
 }
 
-// NewDocument creates a new document from filename. `Meta.Path` is set to the
-// file path relative to `basepath`.
+// NewDocument creates a new document from filename. `Meta.RelPath` is set to the
+// file path relative to `basepath`. See Meta documentation for example.
 func NewDocument(basepath, filename string) (doc *Document, err error) {
 	f, err := os.Open(filename)
 	if err != nil {
