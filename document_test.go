@@ -37,7 +37,7 @@ func init() {
 func TestDocument(t *testing.T) {
 	for _, tc := range docTests {
 		t.Log("test case: " + tc.name)
-		doc, err := NewDocument(filepath.Join("testdata", tc.file))
+		doc, err := NewDocument("testdata", filepath.Join("testdata", tc.file))
 		checkError(t, err, tc.isErr)
 		if !reflect.DeepEqual((*doc).Meta, tc.doc.Meta) {
 			t.Errorf("metadata:\ngot: %v\nwant:%v", (*doc).Meta, tc.doc.Meta)

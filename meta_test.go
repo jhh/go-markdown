@@ -68,7 +68,7 @@ func checkError(t *testing.T, err error, want bool) {
 func TestMeta(t *testing.T) {
 	for _, tc := range metaTests {
 		t.Log("test case: " + tc.name)
-		doc, err := NewDocument(filepath.Join("testdata", tc.file))
+		doc, err := NewDocument("testdata", filepath.Join("testdata", tc.file))
 		checkError(t, err, tc.isErr)
 		if !reflect.DeepEqual(doc.Meta, tc.meta) {
 			t.Errorf("got: %v, want:%v", doc.Meta, tc.meta)
